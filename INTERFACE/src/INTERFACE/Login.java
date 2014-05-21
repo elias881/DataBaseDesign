@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Label;
+import java.awt.Font;
 
 public class Login {
 
@@ -60,11 +61,13 @@ public class Login {
 		textField_1.setColumns(10);
 		
 		Label lblUsername = new Label("UserName");
-		lblUsername.setBounds(96, 66, 70, 24);
+		lblUsername.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblUsername.setBounds(64, 68, 89, 24);
 		frame.getContentPane().add(lblUsername);
 		
 		Label lblPass = new Label("Pass");
-		lblPass.setBounds(96, 103, 70, 24);
+		lblPass.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblPass.setBounds(64, 103, 89, 24);
 		frame.getContentPane().add(lblPass);
 	}
 }
