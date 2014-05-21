@@ -3,10 +3,15 @@ package INTERFACE;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.Label;
 
 public class Login {
 
 	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -38,6 +43,28 @@ public class Login {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(174, 150, 97, 25);
+		frame.getContentPane().add(btnSubmit);
+		
+		textField = new JTextField();
+		textField.setBounds(207, 68, 116, 22);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(207, 103, 116, 22);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		Label lblUsername = new Label("UserName");
+		lblUsername.setBounds(96, 66, 70, 24);
+		frame.getContentPane().add(lblUsername);
+		
+		Label lblPass = new Label("Pass");
+		lblPass.setBounds(96, 103, 70, 24);
+		frame.getContentPane().add(lblPass);
 	}
-
 }
