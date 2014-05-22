@@ -47,6 +47,7 @@ public class Login {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnSubmit.setBounds(174, 150, 97, 25);
 		frame.getContentPane().add(btnSubmit);
 		
