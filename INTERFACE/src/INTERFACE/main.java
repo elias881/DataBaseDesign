@@ -11,7 +11,7 @@ public class main {
 		// String url = "jdbc:sqlserver://VAIO\\MSSQLSERVER; databaseName=MyTest; integratedSecurity=true ";
 
 
-		String url = "jdbc:sqlserver://VAIO\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
+		String url = "jdbc:sqlserver://VAIO\\VAIO;databaseName=Test;integratedSecurity=true";
 
 		// String url = "jdbc:sqlserver://MYPC\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
 
