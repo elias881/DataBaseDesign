@@ -20,7 +20,8 @@ public class main {
 			// String password ="password";
 			 
 			// String url = "jdbc:sqlserver://MYPC\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
-			 String url = "jdbc:sqlserver://VAIO\\MSSQLSERVER; databaseName=MyTest; integratedSecurity=true";
+			 String url = "jdbc:sqlserver://VAIO\\MSSQLSERVER; databaseName=MyTest; integratedSecurity=true ";
+		
 			 
 			 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			 Connection conn = DriverManager.getConnection(url);
