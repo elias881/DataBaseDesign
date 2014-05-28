@@ -4,12 +4,7 @@ import java.sql.*;
 
 public class main {	 
 
-	//static final String JDBCDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//	static final String connectionStr =
-					//"jdbc:sqlserver://Data Source=VAIO;Initial Catalog=Clubs;Integrated Security=True";
-					
-			//		static final String connectionStr =
-				//			"jdbc:sqlserver://localhost;database=VAIO;Initial Integrated Security=True";		
+
 	 
 	public static void main(String[] args)  {
 		
