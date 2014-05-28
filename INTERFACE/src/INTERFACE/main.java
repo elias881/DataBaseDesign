@@ -9,11 +9,16 @@ public class main {
 	public static void main(String[] args)  {
 		
 		// String url = "jdbc:sqlserver://VAIO\\MSSQLSERVER; databaseName=MyTest; integratedSecurity=true ";
+<<<<<<< HEAD
 
 		String url = "jdbc:sqlserver://VAIO\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
 
 		// String url = "jdbc:sqlserver://MYPC\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
 
+=======
+		String url = " jdbc:sqlserver://VAIO;databaseName=MyTest;integratedSecurity=true";
+		// String url = "jdbc:sqlserver://MYPC\\SQLEXPRESS;databaseName=MyTest;integratedSecurity=true";
+>>>>>>> branch 'master' of ssh://git@github.com/elias881/DataBaseDesign.git
 			
 		// String url= "jdbc:sqlserver://VAIO;databaseName=MyTest;integratedSecurity=true";
 		 
