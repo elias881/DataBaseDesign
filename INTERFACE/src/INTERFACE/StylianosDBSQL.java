@@ -10,7 +10,7 @@ package INTERFACE;
 import java.sql.*;
 /**
  *
- * @author Levin
+ * @author 
  */
 public class StylianosDBSQL {
 
@@ -29,6 +29,7 @@ public class StylianosDBSQL {
         // TODO code application logic here
         Connection conn = null;
         Statement stmt = null;
+        ResultSet rs = null;
         try{
            //STEP 2: Register JDBC driver
            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -41,8 +42,24 @@ public class StylianosDBSQL {
            System.out.println("Creating database...");
            stmt = conn.createStatement();
 
-           String sql = "SELECT * FROM [mdm].[tblUser]";
-           stmt.executeQuery(sql);
+           String sql1 = "INSERT INTO [dbo].[login]([username],[pass])VALUES ('kiriakos','123')";
+           //stmt.executeQuery(sql1);
+        		   String sql = "SELECT [username],[pass]  FROM [dbo].[login] ";
+          
+         
+        		   rs= stmt.executeQuery(sql);
+          
+           
+           while (rs.next()) {
+				// retrieve the columns in any order
+				String col2 = rs.getString("username");
+				String col1 = rs.getString("pass");
+				// printing out a row
+				System.out.println(col1 + "," + col2);
+			}
+           
+           
+           
            System.out.println("Statement executed successfully...");
         }catch(SQLException se){
            //Handle errors for JDBC
