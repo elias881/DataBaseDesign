@@ -10,7 +10,8 @@ package INTERFACE;
 import java.sql.*;
 /**
  *
- * @author 
+ * @author elias-stylianos
+ * 
  */
 public class StylianosDBSQL {
 
