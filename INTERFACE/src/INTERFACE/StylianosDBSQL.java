@@ -51,10 +51,11 @@ public class StylianosDBSQL {
            stmt = conn.createStatement();
 
            //String sql1 = "INSERT INTO [dbo].[login]([username],[pass])VALUES ('mkana','bravoo')";
-           String del = "DELETE FROM [dbo].[login]WHERE username='kiacov02'";
-           stmt.executeUpdate(del);      
+           //String del = "DELETE FROM [dbo].[login]WHERE username='kiacov02'";
+           //stmt.executeUpdate(del);      
            //stmt.executeQuery(sql1);
-        		   String sql = "SELECT [username],[pass]  FROM [dbo].[login] ";
+        		   //String sql = "SELECT [username],[pass]  FROM [dbo].[login] ";
+        		   String sql = "SELECT [ID],[Name],[Email],[GenderID] FROM [dbo].[tblPerson]";
           
          
         		   rs= stmt.executeQuery(sql);
@@ -62,11 +63,13 @@ public class StylianosDBSQL {
            System.out.println("\nUsername" + "		" + "Password");
            while (rs.next()) {
 				// retrieve the columns in any order
-				String col2 = rs.getString("username");
-				String col1 = rs.getString("pass");
+				String col2 = rs.getString("ID");
+				String col1 = rs.getString("Name");
+				String col3 = rs.getString("Email");
+				String col4 = rs.getString("GenderID");
 				// printing out a row
 				
-				System.out.println(col2 + "		" + col1);
+				System.out.println(col2 + "   " + col1+"	"+col3 + "	" + col4);
 			}
            
           /* InetAddress IP=InetAddress.getLocalHost();
