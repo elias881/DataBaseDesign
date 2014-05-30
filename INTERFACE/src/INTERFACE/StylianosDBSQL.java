@@ -6,21 +6,28 @@
 
 package INTERFACE;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
 //STEP 1. Import required packages
 import java.sql.*;
 /**
  *
  * @author elias-stylianos
+ * elias881	- eliaras1@
  * 
  */
+@SuppressWarnings("unused")
 public class StylianosDBSQL {
 
     /**
      * @param args the command line arguments
      */
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";  
-    static final String DB_URL = "jdbc:sqlserver://192.168.0.11\\SMKANA01:1433";
+	//String tcp =  Inet4Address.getLocalHost().getHostAddress();
+	
+    static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    static final String DB_URL = "jdbc:sqlserver://localhost\\SMKANA01:1433";
+    //static final String DB_URL = "jdbc:sqlserver://192.168.0.11\\SMKANA01:1433";
 
     //  Database credentials
     static final String USER = "smmkana02";
@@ -43,25 +50,29 @@ public class StylianosDBSQL {
            System.out.println("Creating database...");
            stmt = conn.createStatement();
 
-           String sql1 = "INSERT INTO [dbo].[login]([username],[pass])VALUES ('kiriakos','123')";
+           //String sql1 = "INSERT INTO [dbo].[login]([username],[pass])VALUES ('mkana','bravoo')";
+           String del = "DELETE FROM [dbo].[login]WHERE username='kiacov02'";
+           stmt.executeUpdate(del);      
            //stmt.executeQuery(sql1);
         		   String sql = "SELECT [username],[pass]  FROM [dbo].[login] ";
           
          
         		   rs= stmt.executeQuery(sql);
           
-           
+           System.out.println("\nUsername" + "		" + "Password");
            while (rs.next()) {
 				// retrieve the columns in any order
 				String col2 = rs.getString("username");
 				String col1 = rs.getString("pass");
 				// printing out a row
-				System.out.println(col1 + "," + col2);
+				
+				System.out.println(col2 + "		" + col1);
 			}
            
-           
-           
-           System.out.println("Statement executed successfully...");
+          /* InetAddress IP=InetAddress.getLocalHost();
+           System.out.println(IP.getHostAddress());
+           System.out.println(Inet4Address.getLocalHost().getHostAddress()); */
+           System.out.println("\nStatement executed successfully...");
         }catch(SQLException se){
            //Handle errors for JDBC
            se.printStackTrace();
