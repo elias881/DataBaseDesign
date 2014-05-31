@@ -17,7 +17,8 @@ public class myDatabase extends Frame {
 	Label l1, l2;
 	Panel p1, p2, p3, p4;
 	Button b1, b2, b3, b4, b5, b6, b7, b8;
-	private javax.swing.JLabel L_Backgroung;
+	//private javax.swing.JLabel L_Backgroung;
+	static final String DB_URL = "jdbc:sqlserver://localhost\\SMKANA01:1433";
 
 	public myDatabase() {
 		super("GUI_SQL-Database");
@@ -27,6 +28,7 @@ public class myDatabase extends Frame {
 		p2 = new Panel();
 		p3 = new Panel();
 		p4 = new Panel();
+		
 		/*
 		ImageIcon bg = new ImageIcon(getClass().getResource("sitting-room.jpg"));
 		ImageIcon icon = new ImageIcon("sitting-room.jpeg", "a pretty but meaningless splat");
@@ -93,11 +95,9 @@ public class myDatabase extends Frame {
 	class ConnectDB implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 				// String s = InetAddress.getLocalHost();
-				con = DriverManager.getConnection(
-						"jdbc:mysql://localhost:3306/aparajit", tf1.getText(),
-						tf2.getText());
+				con = DriverManager.getConnection(DB_URL, tf1.getText(),tf2.getText());
 				t2.setText("Connection success");
 			} catch (ClassNotFoundException e2) {
 				t2.setText("Class not found");
@@ -241,6 +241,7 @@ public class myDatabase extends Frame {
 		c.setVisible(true);
 		c.setSize(500, 500);
 		c.setResizable(false);
+		//c.setBackground(Color.blue.lightGray);
 		//c.pack();
 
 	}
