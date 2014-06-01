@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 
 @SuppressWarnings({ "serial", "unused" })
 public class myDatabase extends Frame {
-	private ImageIcon image1;
 	private JLabel label1;
 	Connection con;
 	TextField tf1, tf2;
@@ -17,7 +16,6 @@ public class myDatabase extends Frame {
 	Label l1, l2;
 	Panel p1, p2, p3, p4;
 	Button b1, b2, b3, b4, b5, b6, b7, b8;
-	//private javax.swing.JLabel L_Backgroung;
 	static final String DB_URL = "jdbc:sqlserver://localhost\\SMKANA01:1433";
 
 	public myDatabase() {
@@ -29,15 +27,6 @@ public class myDatabase extends Frame {
 		p3 = new Panel();
 		p4 = new Panel();
 		
-		/*
-		ImageIcon bg = new ImageIcon(getClass().getResource("sitting-room.jpg"));
-		ImageIcon icon = new ImageIcon("sitting-room.jpeg", "a pretty but meaningless splat");
-		image1 = new ImageIcon(getClass().getResource("sitting-room.jpg"));
-		label1 = new JLabel(image1);
-		add(label1);
-		L_Backgroung.setIcon(bg);
-		L_Backgroung.setLocation(300, 80);
-		L_Backgroung.setSize(new Dimension(500, 500));*/
 		
 		p1.setLayout(new GridLayout(3, 3, 20, 20));
 		p2.setLayout(new BorderLayout());
@@ -121,34 +110,63 @@ public class myDatabase extends Frame {
 
 	class Select implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
+			Statement stmt;
+			ResultSet rs;
+			String query;
+			boolean more;
+			int count = 0;
 			try {
-				Statement stmt;
-				ResultSet rs;
-				String query;
-				boolean more;
-				stmt = con.createStatement();
-				int count = 0;
+				stmt = con.createStatement();				
 				query = t1.getText();
 				rs = stmt.executeQuery(query);
+				ResultSetMetaData rsmd=rs.getMetaData();
+				
 				more = rs.next();
+				
+				int numberOfColumns=rsmd.getColumnCount();
+				
 				if (!more) {
 					t2.append("No results");
 					return;
 				}
-				t2.append("NO\tBName\tAname\tRate");
-				while (more) {
-					t2.append("\n" + rs.getString("ano") + "\t"
-							+ rs.getString("bname") + "\t"
-							+ rs.getString("aname") + "\t"
-							+ rs.getString("rate"));
-					count++;
-					more = rs.next();
+				
+				for(int i=1; i <= numberOfColumns; i++){
+					if(i>1)t2.append("\t\t");
+					String columnName=rsmd.getColumnName(i);
+					t2.append(columnName); // pernei col name p.x. username
+					//t2.append("      ");
 				}
-				t2.append("\n" + count + " rows selected");
+				t2.append("\n");
+				
+				for(int i = 1; i <= numberOfColumns; i++){
+				String columnValue=rs.getString(i);
+				t2.append(columnValue);
+				t2.append("\t\t");
+				}
+				t2.append("\n");
+				while(rs.next()){
+					for(int i=1; i<=numberOfColumns; i++){
+						if(i>1)t2.append("\t\t");
+							
+						String columnValue=rs.getString(i);
+						t2.append(columnValue);
+					}
+					t2.append("\n");
+				}
+				
+			/*	//t2.append("NO\tBName\tAname\tRate");
+				while (more) {
+					t2.append("\n" + rs.getString("ID") + "\t"
+							+ rs.getString("Name") + "\t" + rs.getString("Email")+ "\t" + rs.getString("GenderId"));
+							
+					more = rs.next();
+				}*/
+			//	t2.append("\n" + count + " rows selected");
 				rs.close();
 				stmt.close();
 			} catch (Exception e1) {
-				t2.setText("error in selection");
+				t2.setText(e1.getMessage());
 			}
 		}
 	}
@@ -241,7 +259,6 @@ public class myDatabase extends Frame {
 		c.setVisible(true);
 		c.setSize(500, 500);
 		c.setResizable(false);
-		//c.setBackground(Color.blue.lightGray);
 		//c.pack();
 
 	}
