@@ -1,7 +1,7 @@
 package INTERFACE;
 
  
-import javax.swing.*;          
+import javax.swing.*;           
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,12 +11,13 @@ import javax.swing.plaf.synth.*;
 public class LoginDesign implements ActionListener {
 
 	static JFrame frame;
-	private JTextField txtUsername;
-	private JPasswordField txtPass;
+	private static JTextField txtUsername;
+	private static JPasswordField txtPass;
+	static JButton btnSubmit;
 	
     public Component createComponents() {       
     	
-    	JButton btnSubmit = new JButton("Submit");
+    	btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSubmit.setBounds(170, 150, 85, 20);
 		frame.getContentPane().add(btnSubmit);
@@ -35,13 +36,13 @@ public class LoginDesign implements ActionListener {
         txtPass.setForeground(Color.red);
         frame.getContentPane().add(txtPass);
        
-        Label lblUsername = new Label("UserName");
+        Label lblUsername = new Label("Username");
 		lblUsername.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblUsername.setBackground(Color.lightGray);
 		lblUsername.setBounds(64, 68, 89, 24);
 		frame.getContentPane().add(lblUsername);
 		
-		Label lblPass = new Label("Pass");
+		Label lblPass = new Label("Password");
 		lblPass.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblPass.setBounds(64, 103, 89, 24);
 		lblPass.setBackground(Color.lightGray);
@@ -71,9 +72,11 @@ public class LoginDesign implements ActionListener {
     	
     }
 
+
     private static void initLookAndFeel() {
        // String lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-       SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
+       @SuppressWarnings("unused")
+	SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
        
  
     }
@@ -102,14 +105,46 @@ public class LoginDesign implements ActionListener {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        actionlogin();
     }
 
+    /**
+     * actionLogin() just accept the text which typed from username field and
+     * password field after pressing the button submit. Later it checks if the 
+     * username and password is as written within this code. if not the same 
+     * it will give the message and allow the user to input the correct one, 
+     * otherwise it will sign in and terminate the frame. 
+     */
+    public static void actionlogin() {
+    	btnSubmit.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent ae) {
+				String username = txtUsername.getText();
+				String password = txtPass.getText();
+				if (username.equals("Admin") && password.equals("Pass")) {
+					frame.dispose();
+					JOptionPane.showMessageDialog(null,"Login successfully!");
+				} else {
+
+					JOptionPane.showMessageDialog(null,
+							"Wrong Password / Username");
+					txtUsername.setText("");
+					txtPass.setText("");
+					txtUsername.requestFocus();
+				}
+
+			}
+		});
+	}
+    
+    
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
+                
             }
         });
     }

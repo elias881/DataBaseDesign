@@ -1,74 +1,61 @@
 package INTERFACE;
 
-import java.awt.EventQueue;
+import javax.swing.*;  
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.Label;
-import java.awt.Font;
-
-public class Login {
-
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
+@SuppressWarnings({ "serial", "unused", "deprecation" })
+public class Login extends JFrame {
+	static Login frameTabel;
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+		frameTabel = new Login();
+	}
+
+	JButton blogin = new JButton("Login");
+	JPanel panel = new JPanel();
+	JTextField txuser = new JTextField(15);
+	JPasswordField pass = new JPasswordField(15);
+
+	Login() {
+		super("Login Autentification");
+		setSize(300, 200);
+		setLocation(500, 280);
+		panel.setLayout(null);
+
+		txuser.setBounds(70, 30, 150, 20);
+		pass.setBounds(70, 65, 150, 20);
+		blogin.setBounds(110, 100, 80, 20);
+
+		panel.add(blogin);
+		panel.add(txuser);
+		panel.add(pass);
+
+		getContentPane().add(panel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		actionlogin();
+	}
+
+	public void actionlogin() {
+		blogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				String puname = txuser.getText();
+				String ppaswd = pass.getText();
+				if (puname.equals("test") && ppaswd.equals("12345")) {
+					myDatabase regFace = new myDatabase();	//connect with new frame
+					regFace.setVisible(true);
+					dispose();
+				} else {
+
+					JOptionPane.showMessageDialog(null,
+							"Wrong Password / Username");
+					txuser.setText("");
+					pass.setText("");
+					txuser.requestFocus();
 				}
+
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Login() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnSubmit.setBounds(174, 150, 97, 25);
-		frame.getContentPane().add(btnSubmit);
-		
-		textField = new JTextField();
-		textField.setBounds(207, 68, 116, 22);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(207, 103, 116, 22);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		Label lblUsername = new Label("UserName");
-		lblUsername.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblUsername.setBounds(64, 68, 89, 24);
-		frame.getContentPane().add(lblUsername);
-		
-		Label lblPass = new Label("Pass");
-		lblPass.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblPass.setBounds(64, 103, 89, 24);
-		frame.getContentPane().add(lblPass);
 	}
 }
